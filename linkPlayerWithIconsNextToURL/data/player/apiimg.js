@@ -78,11 +78,11 @@ const nativeAPI = (() => {
 
 	return false;
 })();
-
+	   var divObj = document.getElementById("theImage");
 document.addEventListener('keydown', keyPressed);
 function keyPressed(e) {
   if(e.code == "KeyF") {
-	   var divObj = document.getElementById("theImage");
+
 	  if(Boolean(document[nativeAPI.fullscreenElement])){
 			const returnPromise = document[nativeAPI.exitFullscreen]();
 	  }else{
@@ -90,3 +90,11 @@ function keyPressed(e) {
 	  }
   }
 }
+divObj.addEventListener('dblclick', function (e) {
+  if(Boolean(document[nativeAPI.fullscreenElement])){
+			const returnPromise = document[nativeAPI.exitFullscreen]();
+	  }else{
+				const returnPromise = divObj[nativeAPI.requestFullscreen](null);
+	  }
+});
+

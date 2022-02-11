@@ -27698,11 +27698,11 @@
 
       if (controlBar && !IS_IOS && !IS_ANDROID) {
         controlBar.on('mouseenter', function (event) {
-          this.player().cache_.inactivityTimeout = this.player().options_.inactivityTimeout;
+          this.player().cache_.inactivityTimeout = 600;
           this.player().options_.inactivityTimeout = 0;
         });
         controlBar.on('mouseleave', function (event) {
-          this.player().options_.inactivityTimeout = this.player().cache_.inactivityTimeout;
+          this.player().options_.inactivityTimeout = 600;
         });
       } // Listen for keyboard navigation
       // Shouldn't need to use inProgress interval because of key repeat
@@ -27728,7 +27728,7 @@
         this.userActive(true); // Clear any existing inactivity timeout to start the timer over
 
         this.clearTimeout(inactivityTimeout);
-        var timeout = this.options_.inactivityTimeout;
+        var timeout = 345;
 
         if (timeout <= 0) {
           return;

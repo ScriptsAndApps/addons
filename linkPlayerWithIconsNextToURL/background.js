@@ -95,10 +95,10 @@ const onCommand = (options = {}) => find().then(tab => {
   });
   return tab;
 }).catch(() => new Promise(resolve => chrome.storage.local.get({
-  'width': 800,
-  'height': 500,
-  'left': screen.availLeft + Math.round((screen.availWidth - 800) / 2),
-  'top': screen.availTop + Math.round((screen.availHeight - 500) / 2),
+  'width': 1100,
+  'height': 600,
+  'left': screen.availLeft + Math.round((screen.availWidth - 1100) / 2),
+  'top': screen.availTop + Math.round((screen.availHeight - 600) / 2),
   'open-in-tab': false
 }, prefs => {
   const args = new URLSearchParams();

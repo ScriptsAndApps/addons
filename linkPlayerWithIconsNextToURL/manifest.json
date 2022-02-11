@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "version": "1.2.3",
-  "name": "MediaPlayer - Video and Audio Player - mod",
+  "version": "1.2.3.4",
+  "name": "Video-Media player - mod",
   "description": "__MSG_description__",
   "default_locale": "en",
   "background": {

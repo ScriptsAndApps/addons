@@ -17,11 +17,13 @@ var observer = new MutationObserver(function(mutations) {
 				if(extens.some(v => elements[i].href.toLowerCase().endsWith('.'+v)) ){
 				let li = document.createElement('img');
 				li.width="20";
-				li.src = 'https://cdn-icons-png.flaticon.com/512/4208/4208475.png';
+				li.style.width = "20px";
+				li.src =  browser.extension.getURL('data/p.png');		
 				
 				let uri = document.createElement('a');
-				uri.href = "http://o.ooo"+"?burlll=" +btoa(elements[i].href);
+				uri.href = "http://nowhere.notexist"+"?burlll=" +btoa(elements[i].href);
 				uri.setAttribute("target","_blank");
+				uri.style.width = "20px";
 				uri.appendChild(li);				
 				elements[i].parentNode.insertBefore(uri, elements[i].nextSibling);
 				}
@@ -40,10 +42,12 @@ for (var i = 0; i < elementsLength; i++) {
 		if(extens.some(v => elements[i].href.toLowerCase().endsWith('.'+v))){
 			let li = document.createElement('img');
 			li.width="20";
-			li.src = 'https://cdn-icons-png.flaticon.com/512/4208/4208475.png';			
+			li.src = browser.extension.getURL('data/p.png');		
+			li.style.width = "20px";			
 				let uri = document.createElement('a');
-					uri.href =  "http://o.ooo"+"?burlll=" + btoa(elements[i].href);
+					uri.href =  "http://nowhere.notexist"+"?burlll=" + btoa(elements[i].href);
 			uri.setAttribute("target","_blank");
+			uri.style.width = "20px";
 				uri.appendChild(li);
 			elements[i].parentNode.insertBefore(u, elements[i].nextSibling);
 		}

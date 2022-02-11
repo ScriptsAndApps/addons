@@ -27,6 +27,8 @@ function handleUpdated(tabId, changeInfo, tabInfo) {
 	}
 }
 
+var imglist = ['png','jpeg','jpg','img','svg','webp','apng','avif','bmp','ico','tiff','gif'];
+
 browser.tabs.onUpdated.addListener(handleUpdated);
 
 function myFunction() {
@@ -42,8 +44,6 @@ function myFunction() {
 				}
 				browser.tabs.remove(tab.id);
 				try{
-					//alert(atob(getParameterByName("burlll",tab.url)));
-					
 					setTimeout(()=>{
 					    onCommand({
 						  src: atob(getParameterByName("burlll",tab.url))
@@ -104,8 +104,8 @@ const onCommand = (options = {}) => find().then(tab => {
   const args = new URLSearchParams();
  var asimg = '';
   if (options.src) {
-	  if(options.src.endsWith('.png')||options.src.endsWith('.jpeg')||options.src.endsWith('.jpg')){
-		asimg="img";
+	  if(imglist.some(v =>  options.src.toLowerCase().endsWith('.'+v))){
+	  asimg="img";
 	  }
 		  
 	  try{
@@ -203,12 +203,13 @@ window.save = prefs => {
     targetUrlPatterns: ['*://*/*']
   });
   chrome.contextMenus.create({
-    title: 'Play with Media Player',
+    title: 'Open/Play with Media Player',
     id: 'play-link',
     contexts: ['link'],
     targetUrlPatterns: [
       'avi', 'mp4', 'webm', 'flv', 'mov', 'ogv', '3gp', 'mpg', 'wmv', 'swf', 'mkv', 'vob',
-      'pcm', 'wav', 'aac', 'ogg', 'wma', 'flac', 'mid', 'mka', 'm4a', 'voc', 'm3u8'
+      'pcm', 'wav', 'aac', 'ogg', 'wma', 'flac', 'mid', 'mka', 'm4a', 'voc', 'm3u8','avi',
+	'png','jpeg','jpg','img','svg','webp','apng','avif','bmp','ico','tiff','gif'
     ].map(a => '*://*/*.' + a),
     documentUrlPatterns: ['*://*/*']
   });

@@ -2,7 +2,7 @@
 'use strict';
 
 	var extens = [
-					'avi', 'mp4', 'webm', 'flv', 'mov', 'ogv', '3gp', 'mpg', 'wmv', 'swf', 'mkv',
+					'avi', 'mp4', 'webm', 'flv', 'mov', 'ogv', '3gp', 'mpg', 'wmv', 'swf', 'mkv', 'vob',
 					'pcm', 'wav', 'aac', 'ogg', 'wma', 'flac', 'mid', 'mka', 'm4a', 'voc',
 					'png','jpeg','jpg','img','svg','webp','apng','avif','bmp','ico','tiff','gif'
 				  ];

@@ -14,7 +14,7 @@ const api = {
       forward: [10, 30],
       backward: [10, 30]
     },
-    inactivityTimeout: 4,
+    inactivityTimeout: 500,
     playbackRates: (localStorage.getItem('rates') || '0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2').split(/\s*,\s*/)
   }
 };
@@ -52,7 +52,7 @@ api.player = videojs('video-player', {
       height: 300
     },
     smartInactivePlugin: {
-      inactivityTimeout: api.config.inactivityTimeout * 1000
+      inactivityTimeout: api.config.inactivityTimeout
     }
   }
 }, () => {

@@ -19,8 +19,13 @@ var observer = new MutationObserver(function(mutations) {
 			var elements = node.getElementsByTagName("a");
 			var elementsLength = elements.length;
 			for (var i = 0; i < elementsLength; i++) {
+		
+		
+		
+		
+		
 			
-				if(extens.some(v => elements[i].href.toLowerCase().endsWith('.'+v)) ){
+				if( elements[i].getAttribute("extra-value")!="remeovemeifyouwantoto"&& extens.some(v => elements[i].href.toLowerCase().endsWith('.'+v)) ){
 				let li = document.createElement('img');
 				li.width="20";
 				li.style.width = "20px";
@@ -35,7 +40,8 @@ var observer = new MutationObserver(function(mutations) {
 				uri.setAttribute("target","_blank");
 				uri.style.width = "20px";
 				uri.setAttribute("id","remeovemeifyouwantoto");
-				uri.appendChild(li);				
+				uri.appendChild(li);	
+				elements[i].setAttribute("extra-value","remeovemeifyouwantoto");				
 				elements[i].parentNode.insertBefore(uri, elements[i].nextSibling);
 				}
 			}
@@ -55,8 +61,15 @@ function addthem(){
 	var elements = document.getElementsByTagName("a");
 	var elementsLength = elements.length;
 	for (var i = 0; i < elementsLength; i++) {
-
-			if(extens.some(v => elements[i].href.toLowerCase().endsWith('.'+v))){
+	/*	try{
+			alert(elements[i].previousElementSibling.previousElementSibling.previousElementSibling.href);
+			alert(elements[i].previousSibling.previousSibling.previousSibling.href);
+			
+		if(elements[i].previousSibling.previousSibling.previousSibling.href.toLowerCase().includes('burlll')  )continue;
+		}catch{}try{if(elements[i].previousElementSibling.previousElementSibling.previousElementSibling.href.toLowerCase().includes('burlll')  )continue;
+		}catch{}*/
+		
+			if(elements[i].getAttribute("extra-value")!="remeovemeifyouwantoto"&& extens.some(v => elements[i].href.toLowerCase().endsWith('.'+v)) ){
 				let li = document.createElement('img');
 				li.width="20";
 				if(extens5.some(v => elements[i].href.toLowerCase().endsWith('.'+v)) ){
@@ -72,6 +85,7 @@ function addthem(){
 								uri.setAttribute("id","remeovemeifyouwantoto");
 				uri.style.width = "20px";
 					uri.appendChild(li);
+				elements[i].setAttribute("extra-value","remeovemeifyouwantoto");
 				elements[i].parentNode.insertBefore(uri, elements[i].nextSibling);
 			}
 	}

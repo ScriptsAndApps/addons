@@ -1,5 +1,7 @@
 'use strict';
 
+var thissheet = true;
+
 //alert("Open debug log");
 function getParameterByName(name, url = window.location.href) {
     name = name.replace(/[\[\]]/g, '\\$&');
@@ -171,17 +173,19 @@ chrome.browserAction.onClicked.addListener(() => {
     'request-active-tab': true
   }, prefs => {
     if (prefs['request-active-tab']) {
-     // notify(`The extension can optionally find video links from the active tab when this button is pressed. This way the extension plays the media on its interface.`);
-      chrome.storage.local.set({
+          notify(`Disabled in-page icons`);
+         thissheet  = false;     
+	 chrome.storage.local.set({
         'request-active-tab': false
       });
-      chrome.permissions.request({
-        permissions: ['activeTab'],
-        origins: ['*://*/*']
-      }, next);
+      
     }
     else {
-      next();
+		   notify(`Enabled in-page icons`);
+		 thissheet  = true;
+      chrome.storage.local.set({
+        'request-active-tab': true
+      });
     }
   });
 });
@@ -282,32 +286,10 @@ chrome.commands.onCommand.addListener(method => find().then(t => chrome.tabs.sen
   method
 })).catch(() => notify('Please open "Media Player" and retry')));
 
-/* FAQs & Feedback */
-/*
-{
-  const {management, runtime: {onInstalled, setUninstallURL, getManifest}, storage, tabs} = chrome;
-  if (navigator.webdriver !== true) {
-    const page = getManifest().homepage_url;
-    const {name, version} = getManifest();
-    onInstalled.addListener(({reason, previousVersion}) => {
-      management.getSelf(({installType}) => installType === 'normal' && storage.local.get({
-        'faqs': true,
-        'last-update': 0
-      }, prefs => {
-        if (reason === 'install' || (prefs.faqs && reason === 'update')) {
-          const doUpdate = (Date.now() - prefs['last-update']) / 1000 / 60 / 60 / 24 > 45;
-          if (doUpdate && previousVersion !== version) {
-            tabs.query({active: true, currentWindow: true}, tbs => tabs.create({
-              url: page + '?version=' + version + (previousVersion ? '&p=' + previousVersion : '') + '&type=' + reason,
-              active: reason === 'install',
-              ...(tbs && tbs.length && {index: tbs[0].index + 1})
-            }));
-            storage.local.set({'last-update': Date.now()});
-          }
-        }
-      }));
-    });
-    setUninstallURL(page + '?rd=feedback&name=' + encodeURIComponent(name) + '&version=' + version);
-  }
-}
-*/
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.method == "getLocalStorage"){
+		sendResponse({data: thissheet});
+	}
+    else
+      sendResponse({}); // snub them.
+});

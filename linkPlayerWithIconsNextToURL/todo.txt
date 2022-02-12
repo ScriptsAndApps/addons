@@ -1,6 +1,0 @@
-create toggle button for icons
-(	
-	if clicked in top of browser dont open the player but toggle icons by unique id
-or
-	contextmenu toggle icons by some unique id
-)
